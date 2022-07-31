@@ -11,7 +11,9 @@ class ProductPage(BasePage):
         self.solve_quiz_and_get_code()
 
     def should_be_displayed_message_about_added_product(self):
-        assert self.is_element_present(*ProductPageLocators.PRODUCT_ADDED_SUCCESSFULLY_MESSAGE), 'Product has been added... message is absent'
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_ADDED_SUCCESSFULLY_MESSAGE), 'Product has been ' \
+                                                                                                 'added... message is' \
+                                                                                                 ' absent '
 
     def should_be_correct_name_of_product_added(self):
         product_on_page = self.return_text(*ProductPageLocators.PRODUCT_NAME)
@@ -23,5 +25,10 @@ class ProductPage(BasePage):
         price_of_product_in_basket = self.return_price(*ProductPageLocators.PRODUCT_PRICE_IN_BASKET)
         assert price_of_product_in_basket == price_of_product_on_page, 'Price on page and in basket is not the same'
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.PRODUCT_ADDED_SUCCESSFULLY_MESSAGE), 'Success message ' \
+                                                                                                     'should not be ' \
+                                                                                                     'displayed '
 
-
+    def should_success_message_disappear(self):
+        assert self.is_disappeared(*ProductPageLocators.PRODUCT_ADDED_SUCCESSFULLY_MESSAGE), 'Success message should disappear'
