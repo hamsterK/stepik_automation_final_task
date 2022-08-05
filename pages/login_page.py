@@ -12,6 +12,9 @@ def generate_password(length=9):
 
 
 class LoginPage(BasePage):
+    def should_be_login_form(self):
+        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), 'Login form should be present'
+
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_be_login_form()
@@ -20,16 +23,13 @@ class LoginPage(BasePage):
     def should_be_login_url(self):
         assert 'login' in self.browser.current_url, '"Login" should be present in url'
 
-    def should_be_login_form(self):
-        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), 'Login form should be present'
-
     def should_be_register_form(self):
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), 'Register form should be present'
 
     def register_new_user(self):
         email = self.browser.find_element(*LoginPageLocators.REGISTER_FORM_EMAIL)
         password = self.browser.find_element(*LoginPageLocators.REGISTER_FORM_PASSWORD)
-        confirm_password = self.browser.find_element(*LoginPageLocators.REGISTER_FORM_CONFIRM_PASSWORD)
+        confirm_password = self.browser.find_element(*LoginPageLocators.REGISTER_FORM_PASSWORD_CONFIRM)
         email.send_keys(str(time.time()) + '@fakemail.org')
         new_password = generate_password()
         password.send_keys(new_password)
