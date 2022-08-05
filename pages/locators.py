@@ -23,7 +23,7 @@ class LoginPageLocators:
     REGISTER_FORM_EMAIL = (By.XPATH, '//input[@name="registration-email"]')
     REGISTER_FORM_PASSWORD = (By.XPATH, '//input[@name="registration-password1"]')
     REGISTER_FORM_CONFIRM_PASSWORD = (By.XPATH, '//input[@name="registration-password2"]')
-    REGISTER_BUTTON = (By.CSS_SELECTOR, 'registration_submit')
+    REGISTER_BUTTON = (By.XPATH, '//button[@name="registration_submit"]')
 
 
 class ProductPageLocators:
