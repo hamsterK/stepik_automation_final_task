@@ -54,7 +54,7 @@ class BasePage:
 
     def return_price(self, how, what):
         try:
-            price_value = int(self.browser.find_element(how, what).text)
+            price_value = self.browser.find_element(how, what).text
         except NoSuchElementException:
             return None
         return price_value
